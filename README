@@ -1,0 +1,67 @@
+//
+//  Argument Overloading Readme
+//_______________________________//
+
+Defines two functions that each overload a number of "sub-functions" sent to them.
+Constructor functions can not be constructed this way.
+
+overloadArgumentCount(functions[,debugName])
+	Creates a function that calls one of the overloaded functions depending on the number of arguments sent.
+	If specified, the debug name will be given in any error messages the function throws.
+
+overloadArgumentType(functions[,debugName])
+	Creates a function that calls one of the overloaded functions depending on the type of the first argument.
+	If specified, the debug name will be given in any error messages the function throws.
+
+Both functions hold a single boolean property that enables/disables argument checking for the returned functions.
+
+	overloadArgumentCount.verifyOverloadedFunctions
+	overloadArgumentType.verifyOverloadedFunctions
+
+		Default: true
+
+		If true then the returned function will check that there is a function for the argument count/type before calling it.
+		If a function for the argument count/type does not exist then a TypeError is thrown.
+
+
+A trivial example scenario:
+
+Person = function(){
+	this.init.apply(this,arguments);
+};
+
+Person.prototype = {
+
+	name:'John Doe',
+
+	age:24,
+
+	gender:'male',
+
+	init:overloadArgumentCount({
+
+		0:function(){
+			throw new TypeError('Person initiated with no properties.');
+		},
+
+		1:function(name){
+			this.name = name;
+		},
+
+		2:function(name,age){
+			this.name = name;
+			this.age = age;
+		},
+
+		3:function(name,age,gender){
+			this.name = name;
+			this.age = age;
+			this.gender = gender;
+		}
+
+	})
+
+};
+
+The above code creates a small person class with 3 properties that can be constructed in 3 ways through the overloaded init method.
+The "0" case above is only there as an example of what else can be done.
