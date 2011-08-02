@@ -25,9 +25,9 @@ function overloadArgumentCount(functions,debugName){
 			}
 			//Else throw a type error.
 			if(typeof func.debugName === 'string'){
-				throw new TypeError('Overloaded function "'+func.debugName+'" not available for argument count: '+arguments.length+'.');
+				throw new TypeError('Overloaded function "'+func.debugName+'" has no sub-function available for argument count: '+arguments.length);
 			}
-			throw new TypeError('Overloaded function not available for argument count: '+arguments.length+'.');
+			throw new TypeError('No sub-function not available for argument count: '+arguments.length);
 		};
 
 		//Set the name of the function.
@@ -77,9 +77,9 @@ function overloadArgumentType(functions,debugName){
 			}
 			//Else throw a type error.
 			if(typeof func.debugName === 'string'){
-				throw new TypeError('Overloaded function "'+func.debugName+'" not available for argument type: '+typeof firstArg+'.');
+				throw new TypeError('Overloaded function "'+func.debugName+'" has no sub-function available for argument type: '+typeof firstArg);
 			}
-			throw new TypeError('Overloaded function not available for argument type: '+typeof firstArg+'.');
+			throw new TypeError('No sub-function not available for argument type: '+typeof firstArg);
 		};
 
 		//Set the name of the function.

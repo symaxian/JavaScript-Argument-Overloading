@@ -112,10 +112,28 @@
 					<td id="test14"></td>
 				</tr>
 				<tr>
+					<td>Argument type overload, function 1</td>
+					<td>typeOverloadedFunction(function(){})</td>
+					<td>Function 'function' called</td>
+					<td id="test15"></td>
+				</tr>
+				<tr>
+					<td>Argument type overload, function 2</td>
+					<td>typeOverloadedFunction(typeOverloadedFunction)</td>
+					<td>Function 'function' called</td>
+					<td id="test16"></td>
+				</tr>
+				<tr>
+					<td>Argument type overload, function 2</td>
+					<td>typeOverloadedFunction(Math.max)</td>
+					<td>Function 'function' called</td>
+					<td id="test17"></td>
+				</tr>
+				<tr>
 					<td>Argument type overload, undefined</td>
 					<td>typeOverloadedFunction()</td>
 					<td>Function 'undefined' called</td>
-					<td id="test15"></td>
+					<td id="test18"></td>
 				</tr>
 			</table>
         </center>
@@ -157,6 +175,10 @@
 
 				'object':function(){
 					nextElement.innerText = "Function 'object' called";
+				},
+
+				'function':function(){
+					nextElement.innerText = "Function 'function' called";
 				},
 
 				'undefined':function(){
@@ -208,6 +230,15 @@
 			typeOverloadedFunction(window);
 			
 			nextElement = document.getElementById('test15');
+			typeOverloadedFunction(function(){});
+			
+			nextElement = document.getElementById('test16');
+			typeOverloadedFunction(typeOverloadedFunction);
+			
+			nextElement = document.getElementById('test17');
+			typeOverloadedFunction(Math.max);
+			
+			nextElement = document.getElementById('test18');
 			typeOverloadedFunction();
 
 		</script>
