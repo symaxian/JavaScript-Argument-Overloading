@@ -2,8 +2,10 @@
 //  Argument Overloading
 //________________________//
 
+//Version 1.0
+
 /**
- * Returns a function that overloads(calls one of) the functions sent to it depending on the number of arguments sent to the returned function.
+ * Creates and returns a function that overloads the sent sub-functions, calling one depending on the number of arguments sent to the overloaded function.
  * @name overloadArgumentCount
  * @function
  * @returns {Function}
@@ -15,7 +17,7 @@ function overloadArgumentCount(functions,debugName){
 
 	//Define the overloaded function.
 
-	if(overloadArgumentCount.verifyOverloadedFunctions){
+	if(overloadArgumentCount.verifySubFunctions){
 
 		var func = function ArgumentCountOverloadedFunction(){
 			//Check if there is a function for the number of arguments sent.
@@ -27,10 +29,10 @@ function overloadArgumentCount(functions,debugName){
 			if(typeof func.debugName === 'string'){
 				throw new TypeError('Overloaded function "'+func.debugName+'" has no sub-function available for argument count: '+arguments.length);
 			}
-			throw new TypeError('No sub-function not available for argument count: '+arguments.length);
+			throw new TypeError('No sub-function available for argument count: '+arguments.length);
 		};
 
-		//Set the name of the function.
+		//Set the debug name of the function.
 		if(typeof debugName === 'string'){
 			func.debugName = debugName;
 		}
@@ -45,17 +47,15 @@ function overloadArgumentCount(functions,debugName){
 
 	}
 
-	//Store the overloaded functions in the main function.
+	//Store the sub-functions in the overloaded function.
 	func.functions = functions;
-	
+
 	//Return the overloaded function.
 	return func;
 }
 
-overloadArgumentCount.verifyOverloadedFunctions = true;
-
 /**
- * Returns a function that overloads(calls one of) the functions sent to it depending on the type of the first argument sent to the returned function.
+ * Creates and returns a function that overloads the sent sub-functions, calling one depending on the type of the first argument sent to the overloaded function.
  * @name overloadArgumentType
  * @function
  * @returns {Function}
@@ -67,7 +67,7 @@ function overloadArgumentType(functions,debugName){
 
 	//Define the overloaded function.
 
-	if(overloadArgumentType.verifyOverloadedFunctions){
+	if(overloadArgumentType.verifySubFunctions){
 
 		var func = function ArgumentTypeOverloadedFunction(firstArg){
 			//Check if there is a function defined for the first argument's type.
@@ -79,10 +79,10 @@ function overloadArgumentType(functions,debugName){
 			if(typeof func.debugName === 'string'){
 				throw new TypeError('Overloaded function "'+func.debugName+'" has no sub-function available for argument type: '+typeof firstArg);
 			}
-			throw new TypeError('No sub-function not available for argument type: '+typeof firstArg);
+			throw new TypeError('No sub-function available for argument type: '+typeof firstArg);
 		};
 
-		//Set the name of the function.
+		//Set the debug name of the function.
 		if(typeof debugName === 'string'){
 			func.debugName = debugName;
 		}
@@ -97,12 +97,13 @@ function overloadArgumentType(functions,debugName){
 
 	}
 
-	//Store the overloaded functions in the main function.
+	//Store the sub-functions in the overloaded function.
 	func.functions = functions;
 
 	//Return the overloaded function.
 	return func;
-
 }
 
-overloadArgumentType.verifyOverloadedFunctions = true;
+//Set the verify sub-functions flag.
+overloadArgumentCount.verifySubFunctions = true;
+overloadArgumentType.verifySubFunctions = true;

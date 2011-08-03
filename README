@@ -6,24 +6,21 @@
 Defines two functions that each overload a number of "sub-functions" sent to them.
 
 overloadArgumentCount(functions[,debugName])
-	Creates a function that calls one of the overloaded functions depending on the number of arguments sent.
+	Creates and returns an overloaded function that calls one of the sub-functions depending on the number of arguments sent to the overloaded function.
 	If specified, the debug name will be given in any error messages the function throws.
 
 overloadArgumentType(functions[,debugName])
-	Creates a function that calls one of the overloaded functions depending on the type of the first argument.
+	Creates and returns an overloaded function that calls one of the sub-functions depending on the type of the first argument sent to the overloaded function.
 	If specified, the debug name will be given in any error messages the function throws.
 
-Both functions hold a single boolean property that enables/disables argument checking for the returned functions.
+Both functions hold a single boolean property that enables/disables checking the sub-functions on the returned overloaded functions.
 
-	overloadArgumentCount.verifyOverloadedFunctions
-	overloadArgumentType.verifyOverloadedFunctions
+	overloadArgumentCount.verifySubFunctions
+	overloadArgumentType.verifySubFunctions
 
-	Default: true
-
-	If true then the returned function will check that there is a function for the argument count/type before calling it.
-	If a function for the argument count/type does not exist then a TypeError is thrown.
-
-Constructor functions can not be constructed this way but there is a workaround shown below.
+	The default value for both is true.
+	If true then the overloaded function will check that there is a sub-function for the argument count/type before calling it.
+	If a sub-function for the argument count/type does not exist then a TypeError is thrown.
 
 
 
@@ -70,8 +67,7 @@ Person.prototype = {
 };
 
 The above code creates a small person class with 3 properties that can be constructed in 3 ways through the overloaded init method.
-The "0" case above is only there as an example of what else can be done.
-While actual constructor functions cannot be overloaded in this manner, there is a workaround shown above in the Person class.
+Constructor functions themselves cannot be overloaded in this manner, however there is a workaround shown above in the Person class.
 
 
 
@@ -104,9 +100,9 @@ whatTypeIsIt = overloadArgumentType({
 
 },'whatTypeIsIt');
 
-Here the function called depends on the "typeof" the first argument sent to the function.
-Note that a debug name is given to the function.
-Therefore if a function does not exist for the type of the first argument and the function was constructed when the verifyOverloadedFunctions flag was true, then the error thrown will give that as the name of the function in the message.
+Here the function called depends on the "typeof" the first argument sent to the overloaded function.
+Note that a debug name is given to the overloaded function.
+Therefore if a function does not exist for the type of the first argument and the function was constructed when the verifySubFunctions flag was true, then the error thrown will give the debug name in the message.
 So if we called whatTypeIsIt with a string like so "whatTypeIsIt('lol')" then an error such as the one below would be thrown.
 
 	TypeError: Overloaded function "whatTypeIsIt" has no sub-function available for argument type: string
@@ -118,7 +114,7 @@ So if we called whatTypeIsIt with a string like so "whatTypeIsIt('lol')" then an
 //________________//
 
 
-Sub-functions can also be added or removed after the main function has been created, just add or remove the sub-functions to/from the functions member of the main function.
+Sub-functions can also be added or removed after the overloaded function has been created, just add or remove the sub-functions to/from the functions member of the overloaded function.
 
 For example, if we wanted the Person class' init method to also take 4 arguments, we could do this:
 
