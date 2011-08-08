@@ -6,21 +6,23 @@
 Defines two functions that each overload a number of "sub-functions" sent to them.
 
 overloadArgumentCount(functions[,debugName])
-	Creates and returns an overloaded function that calls one of the sub-functions depending on the number of arguments sent to the overloaded function.
-	If specified, the debug name will be given in any error messages the function throws.
+
+Creates and returns an overloaded function that calls one of the sub-functions depending on the number of arguments sent to the overloaded function.
+If specified, the debug name will be given in any error messages the function throws.
 
 overloadArgumentType(functions[,debugName])
-	Creates and returns an overloaded function that calls one of the sub-functions depending on the type of the first argument sent to the overloaded function.
-	If specified, the debug name will be given in any error messages the function throws.
+
+Creates and returns an overloaded function that calls one of the sub-functions depending on the type of the first argument sent to the overloaded function.
+If specified, the debug name will be given in any error messages the function throws.
 
 Both functions hold a single boolean property that enables/disables checking the sub-functions on the returned overloaded functions.
 
-	overloadArgumentCount.verifySubFunctions
-	overloadArgumentType.verifySubFunctions
+overloadArgumentCount.verifySubFunctions
+overloadArgumentType.verifySubFunctions
 
-	The default value for both is true.
-	If true then the overloaded function will check that there is a sub-function for the argument count/type before calling it.
-	If a sub-function for the argument count/type does not exist then a TypeError is thrown.
+The default value for both is true.
+If true then the overloaded function will check that there is a sub-function for the argument count/type before calling it.
+If a sub-function for the argument count/type does not exist then a TypeError is thrown.
 
 
 
@@ -105,7 +107,7 @@ Note that a debug name is given to the overloaded function.
 Therefore if a function does not exist for the type of the first argument and the function was constructed when the verifySubFunctions flag was true, then the error thrown will give the debug name in the message.
 So if we called whatTypeIsIt with a string like so "whatTypeIsIt('lol')" then an error such as the one below would be thrown.
 
-	TypeError: Overloaded function "whatTypeIsIt" has no sub-function available for argument type: string
+TypeError: Overloaded function "whatTypeIsIt" has no sub-function available for argument type: string
 
 
 
