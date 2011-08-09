@@ -104,10 +104,14 @@ whatTypeIsIt = overloadArgumentType({
 
 Here the function called depends on the "typeof" the first argument sent to the overloaded function.
 Note that a debug name is given to the overloaded function.
-Therefore if a function does not exist for the type of the first argument and the function was constructed when the verifySubFunctions flag was true, then the error thrown will give the debug name in the message.
-So if we called whatTypeIsIt with a string like so "whatTypeIsIt('lol')" then an error such as the one below would be thrown.
+Therefore if a sub-function corresponding to the first argument's type does not exist and the function was constructed when the verifySubFunctions flag was true, then the error thrown will give the debug name in the message.
+So if we called whatTypeIsIt with a string variable such as "whatTypeIsIt('lol')" then an error such as the one below would be thrown.
 
 TypeError: Overloaded function "whatTypeIsIt" has no sub-function available for argument type: string
+
+If a debugName not specified for the whatTypeIsIt function then the error below would be thrown.
+
+TypeError: Overloaded function has no sub-function available for argument type: string
 
 
 
@@ -130,3 +134,15 @@ Person.prototype.init.functions['4'] = function(name,age,gender,location){
 And to delete the init method that takes 0 arguments, just do:
 
 delete Person.prototype.init.functions['0'];
+
+
+
+//
+//  Version List
+//________________//
+
+1.0
+	Initial release.
+
+1.01
+	Changed the error messages.

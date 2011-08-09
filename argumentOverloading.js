@@ -2,7 +2,7 @@
 //  Argument Overloading
 //________________________//
 
-//Version 1.0
+//Version 1.01
 
 /**
  * Creates and returns a function that overloads the sent sub-functions, calling one depending on the number of arguments sent to the overloaded function.
@@ -29,7 +29,7 @@ function overloadArgumentCount(functions,debugName){
 			if(typeof func.debugName === 'string'){
 				throw new TypeError('Overloaded function "'+func.debugName+'" has no sub-function available for argument count: '+arguments.length);
 			}
-			throw new TypeError('No sub-function available for argument count: '+arguments.length);
+			throw new TypeError('Overloaded function has no sub-function available for argument count: '+arguments.length);
 		};
 
 		//Set the debug name of the function.
@@ -79,7 +79,7 @@ function overloadArgumentType(functions,debugName){
 			if(typeof func.debugName === 'string'){
 				throw new TypeError('Overloaded function "'+func.debugName+'" has no sub-function available for argument type: '+typeof firstArg);
 			}
-			throw new TypeError('No sub-function available for argument type: '+typeof firstArg);
+			throw new TypeError('Overloaded function has no sub-function available for argument type: '+typeof firstArg);
 		};
 
 		//Set the debug name of the function.
