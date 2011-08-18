@@ -1,0 +1,139 @@
+<html>
+	<head>
+		<title>JavaScript Argument Overloading Test</title>
+		<style type="text/css">
+		
+			body {
+				font-family: sans-serif;
+				background-color: lightgrey;
+			}
+			
+			table {
+				width: 100%;
+			}
+			
+			th {
+				border: 1px solid black;
+				width: 33%;
+			}
+			
+		</style>
+		<script type='text/javascript' src='argumentOverloading.js'></script>
+	</head>
+	<body style="width: 1200px; margin: auto;">
+		<h2>JavaScript Argument Overloading Test</h2>
+		<p>
+			A small page that runs a few speed tests.
+		</p>
+		<pre>var arr = [];
+for(var i=0;i&lt;test1InnerCount;i++){
+	arr.push(i);
+}</pre>
+		<div>
+			<p>
+				Iterations: <span id="test1Count"></span>
+				<br>
+				Inner(inside each iteration) Iterations: <span id="test1InnerCount"></span>
+			</p>
+			<table align="left">
+				<tr>
+					<th>What was executed</th>
+					<th>Duration(milliseconds, lower is better)</th>
+				</tr>
+				<tr>
+					<td>(Just the code)</td>
+					<td id="test1a"></td>
+				</tr>
+				<tr>
+					<td>The code in a regular function</td>
+					<td id="test1b"></td>
+				</tr>
+				<tr>
+					<td>The code in an argument count overloaded function with argument checking</td>
+					<td id="test1c"></td>
+				</tr>
+				<tr>
+					<td>The code in an argument count overloaded function without argument checking</td>
+					<td id="test1d"></td>
+				</tr>
+			</table>
+		</div>
+		<script type='text/javascript'>
+
+			//Test1
+
+			test1Count = 100000;
+			test1InnerCount = 200;
+
+			document.getElementById('test1Count').innerText = test1Count;
+			document.getElementById('test1InnerCount').innerText = test1InnerCount;
+
+			var countOverloadedFunction1 = overloadArgumentCount({
+
+				0:function(){
+					var arr = [];
+					for(var i=0;i<test1InnerCount;i++){
+						arr.push(i);
+					}
+				}
+			
+			});
+
+			overloadArgumentCount.verfifySubFunctions = false;
+
+			var countOverloadedFunction2 = overloadArgumentCount({
+
+				0:function(){
+					var arr = [];
+					for(var i=0;i<test1InnerCount;i++){
+						arr.push(i);
+					}
+				}
+			
+			});
+
+			arg0Function = function(){
+				var arr = [];
+				for(var i=0;i<test1InnerCount;i++){
+					arr.push(i);
+				}
+			}
+
+			var time = new Date().getTime();
+
+			for(var i=0;i<test1Count;i++){
+				var arr = [];
+				for(var j=0;j<test1InnerCount;j++){
+					arr.push(i);
+				}
+			}
+
+			document.getElementById('test1a').innerText = new Date().getTime()-time;
+
+			var time = new Date().getTime();
+
+			for(var i=0;i<test1Count;i++){
+				arg0Function();
+			}
+
+			document.getElementById('test1b').innerText = new Date().getTime()-time;
+
+			var time = new Date().getTime();
+
+			for(var i=0;i<test1Count;i++){
+				countOverloadedFunction2();
+			}
+
+			document.getElementById('test1c').innerText = new Date().getTime()-time;
+
+			var time = new Date().getTime();
+
+			for(var i=0;i<test1Count;i++){
+				countOverloadedFunction2();
+			}
+
+			document.getElementById('test1d').innerText = new Date().getTime()-time;
+
+		</script>
+	</body>
+</html>
