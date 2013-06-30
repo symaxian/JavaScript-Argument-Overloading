@@ -5,7 +5,7 @@
 		
 			body {
 				font-family: sans-serif;
-				background-color: lightgrey;
+				background-color: #BBB;
 			}
 			
 			table {
@@ -20,7 +20,7 @@
 		</style>
 		<script type='text/javascript' src='argumentOverloading.js'></script>
 	</head>
-	<body style="width: 1200px; margin: auto;">
+	<body style="width: 1024px; margin: auto;">
 		<h2>JavaScript Argument Overloading Test</h2>
 		<p>
 			A small page that runs a few quick and dirty tests to ensure the overloaded functions are working correctly.
@@ -29,49 +29,51 @@
 			<br>
 			<pre>var countOverloadedFunction = overloadArgumentCount({
 
-	0:function(){
+	'0': function(){
 		return 'Function 0 called';
 	},
 
-	1:function(){
+	'1': function(){
 		return 'Function 1 called';
 	},
 
-	2:function(){
+	'2': function(){
 		return 'Function 2 called';
 	},
 
-	10:function(){
+	'10': function(){
 		return 'Function 10 called';
 	}
 			
 });</pre>
 			<table align="left">
-				<tr>
-					<th>Code</th>
-					<th>Expected Result</th>
-					<th>Result</th>
-				</tr>
-				<tr>
-					<td>countOverloadedFunction()</td>
-					<td>Function 0 called</td>
-					<td id="test1"></td>
-				</tr>
-				<tr>
-					<td>countOverloadedFunction(true)</td>
-					<td>Function 1 called</td>
-					<td id="test2"></td>
-				</tr>
-				<tr>
-					<td>countOverloadedFunction(null,true)</td>
-					<td>Function 2 called</td>
-					<td id="test3"></td>
-				</tr>
-				<tr>
-					<td>countOverloadedFunction(1,2,3,4,5,6,7,8,9,10)</td>
-					<td>Function 10 called</td>
-					<td id="test4"></td>
-				</tr>
+				<tbody>
+					<tr>
+						<th>Code</th>
+						<th>Expected Result</th>
+						<th>Result</th>
+					</tr>
+					<tr>
+						<td>countOverloadedFunction()</td>
+						<td>Function 0 called</td>
+						<td id="count-test-0"></td>
+					</tr>
+					<tr>
+						<td>countOverloadedFunction(true)</td>
+						<td>Function 1 called</td>
+						<td id="count-test-1"></td>
+					</tr>
+					<tr>
+						<td>countOverloadedFunction(null,true)</td>
+						<td>Function 2 called</td>
+						<td id="count-test-2"></td>
+					</tr>
+					<tr>
+						<td>countOverloadedFunction(1,2,3,4,5,6,7,8,9,10)</td>
+						<td>Function 10 called</td>
+						<td id="count-test-3"></td>
+					</tr>
+				</tbody>
 			</table>
 			<br>
 			<br>
@@ -83,27 +85,27 @@
 			<br>
 			<pre>var typeOverloadedFunction = overloadArgumentType({
 
-	'boolean':function(){
+	'boolean': function(){
 		return "Function 'boolean' called";
 	},
 	
-	'number':function(){
+	'number': function(){
 		return "Function 'number' called";
 	},
 	
-	'string':function(){
+	'string': function(){
 		return "Function 'string' called";
 	},
 	
-	'object':function(){
+	'object': function(){
 		return "Function 'object' called";
 	},
 	
-	'function':function(){
+	'function': function(){
 		return "Function 'function' called";
 	},
 	
-	'undefined':function(){
+	'undefined': function(){
 		return "Function 'undefined' called";
 	}
 			
@@ -117,72 +119,72 @@
 				<tr>
 					<td>typeOverloadedFunction(true)</td>
 					<td>Function 'boolean' called</td>
-					<td id="test5"></td>
+					<td id="type-test-0"></td>
 				</tr>
 				<tr>
 					<td>typeOverloadedFunction(false)</td>
 					<td>Function 'boolean' called</td>
-					<td id="test6"></td>
+					<td id="type-test-1"></td>
 				</tr>
 				<tr>
 					<td>typeOverloadedFunction(1337)</td>
 					<td>Function 'number' called</td>
-					<td id="test7"></td>
+					<td id="type-test-2"></td>
 				</tr>
 				<tr>
 					<td>typeOverloadedFunction(-1)</td>
 					<td>Function 'number' called</td>
-					<td id="test8"></td>
+					<td id="type-test-3"></td>
 				</tr>
 				<tr>
 					<td>typeOverloadedFunction('')</td>
 					<td>Function 'string' called</td>
-					<td id="test9"></td>
+					<td id="type-test-4"></td>
 				</tr>
 				<tr>
 					<td>typeOverloadedFunction('lol')</td>
 					<td>Function 'string' called</td>
-					<td id="test10"></td>
+					<td id="type-test-5"></td>
 				</tr>
 				<tr>
 					<td>typeOverloadedFunction({})</td>
 					<td>Function 'object' called</td>
-					<td id="test11"></td>
+					<td id="type-test-6"></td>
 				</tr>
 				<tr>
 					<td>typeOverloadedFunction([])</td>
 					<td>Function 'object' called</td>
-					<td id="test12"></td>
+					<td id="type-test-7"></td>
 				</tr>
 				<tr>
 					<td>typeOverloadedFunction(null)</td>
 					<td>Function 'object' called</td>
-					<td id="test13"></td>
+					<td id="type-test-8"></td>
 				</tr>
 				<tr>
 					<td>typeOverloadedFunction(window)</td>
 					<td>Function 'object' called</td>
-					<td id="test14"></td>
+					<td id="type-test-9"></td>
 				</tr>
 				<tr>
 					<td>typeOverloadedFunction(function(){})</td>
 					<td>Function 'function' called</td>
-					<td id="test15"></td>
+					<td id="type-test-10"></td>
 				</tr>
 				<tr>
 					<td>typeOverloadedFunction(typeOverloadedFunction)</td>
 					<td>Function 'function' called</td>
-					<td id="test16"></td>
+					<td id="type-test-11"></td>
 				</tr>
 				<tr>
 					<td>typeOverloadedFunction(Math.max)</td>
 					<td>Function 'function' called</td>
-					<td id="test17"></td>
+					<td id="type-test-12"></td>
 				</tr>
 				<tr>
 					<td>typeOverloadedFunction()</td>
 					<td>Function 'undefined' called</td>
-					<td id="test18"></td>
+					<td id="type-test-13"></td>
 				</tr>
 			</table>
 		</div>
@@ -190,19 +192,19 @@
 
 			var countOverloadedFunction = overloadArgumentCount({
 
-				0:function(){
+				'0': function(){
 					return 'Function 0 called';
 				},
 
-				1:function(){
+				'1': function(){
 					return 'Function 1 called';
 				},
 
-				2:function(){
+				'2': function(){
 					return 'Function 2 called';
 				},
 
-				10:function(){
+				'10': function(){
 					return 'Function 10 called';
 				}
 			
@@ -210,67 +212,63 @@
 
 			var typeOverloadedFunction = overloadArgumentType({
 
-				'boolean':function(){
+				'boolean': function(){
 					return "Function 'boolean' called";
 				},
 
-				'number':function(){
+				'number': function(){
 					return "Function 'number' called";
 				},
 
-				'string':function(){
+				'string': function(){
 					return "Function 'string' called";
 				},
 
-				'object':function(){
+				'object': function(){
 					return "Function 'object' called";
 				},
 
-				'function':function(){
+				'function': function(){
 					return "Function 'function' called";
 				},
 
-				'undefined':function(){
+				'undefined': function(){
 					return "Function 'undefined' called";
 				}
 			
 			});
 
-			document.getElementById('test1').innerText = countOverloadedFunction();
-			
-			document.getElementById('test2').innerText = countOverloadedFunction(true);
-			
-			document.getElementById('test3').innerText = countOverloadedFunction(null,true);
-			
-			document.getElementById('test4').innerText = countOverloadedFunction(1,2,3,4,5,6,7,8,9,10);
+			var countTests = [
+				[],
+				[true],
+				[null, true],
+				[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+			];
 
-			document.getElementById('test5').innerText = typeOverloadedFunction(true);
-			
-			document.getElementById('test6').innerText = typeOverloadedFunction(false);
-			
-			document.getElementById('test7').innerText = typeOverloadedFunction(1337);
-			
-			document.getElementById('test8').innerText = typeOverloadedFunction(-1);
-			
-			document.getElementById('test9').innerText = typeOverloadedFunction('');
-			
-			document.getElementById('test10').innerText = typeOverloadedFunction('lol');
-			
-			document.getElementById('test11').innerText = typeOverloadedFunction({});
-			
-			document.getElementById('test12').innerText = typeOverloadedFunction([]);
-			
-			document.getElementById('test13').innerText = typeOverloadedFunction(null);
-			
-			document.getElementById('test14').innerText = typeOverloadedFunction(window);
-			
-			document.getElementById('test15').innerText = typeOverloadedFunction(function(){});
-			
-			document.getElementById('test16').innerText = typeOverloadedFunction(typeOverloadedFunction);
-			
-			document.getElementById('test17').innerText = typeOverloadedFunction(Math.max);
-			
-			document.getElementById('test18').innerText = typeOverloadedFunction();
+			for(var i=0;i<countTests.length;i++){
+				document.getElementById('count-test-'+i).innerText = countOverloadedFunction.apply(this, countTests[i]);
+			}
+
+			var typeTests = [
+				[true],
+				[false],
+				[1337],
+				[-1],
+				[''],
+				['lol'],
+				[{}],
+				[[]],
+				[null],
+				[window],
+				[function(){}],
+				[typeOverloadedFunction],
+				[Math.max],
+				[]
+			];
+
+			for(var i=0;i<typeTests.length;i++){
+				document.getElementById('type-test-'+i).innerText = typeOverloadedFunction.apply(this, typeTests[i]);
+			}
 
 		</script>
 	</body>
